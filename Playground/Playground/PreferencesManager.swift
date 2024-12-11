@@ -23,7 +23,7 @@ final class PreferencesManager {
     func export<T: View>(view: T) {
         let size = CGSize(width: imageWidth, height: imageHeight)
         
-        if let imageData = ViewToImage.png(view, size: size) {
+        if let imageData = ViewToImage.png(from: view, size: size) {
             self.imageToExport = ImageDocument(imageData: imageData)
         }
     }

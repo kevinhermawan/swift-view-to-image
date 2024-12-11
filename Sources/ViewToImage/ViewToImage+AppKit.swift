@@ -20,8 +20,8 @@ public struct ViewToImage: ViewToImageProtocol {
     ///   - size: The output size of the image.
     ///   - scale: A scale factor to apply to the image. Defaults to 1.0.
     /// - Returns: A HEIC image data if successful, or nil if the conversion fails.
-    public static func heic<T: View>(_ view: T, size: CGSize, scale: CGFloat = 1.0) -> Data? {
-        createBitmapRep(view, size: size, scale: scale)?
+    public static func heic<T: View>(from view: T, size: CGSize, scale: CGFloat = 1.0) -> Data? {
+        createBitmapRep(from: view, size: size, scale: scale)?
             .heicData()
     }
     
@@ -31,8 +31,8 @@ public struct ViewToImage: ViewToImageProtocol {
     ///   - size: The output size of the image.
     ///   - scale: A scale factor to apply to the image. Defaults to 1.0.
     /// - Returns: A JPEG image data if successful, or nil if the conversion fails.
-    public static func jpeg<T: View>(_ view: T, size: CGSize, scale: CGFloat = 1.0) -> Data? {
-        createBitmapRep(view, size: size, scale: scale)?
+    public static func jpeg<T: View>(from view: T, size: CGSize, scale: CGFloat = 1.0) -> Data? {
+        createBitmapRep(from: view, size: size, scale: scale)?
             .representation(using: .jpeg, properties: [.compressionFactor: 1.0])
     }
     
@@ -43,14 +43,14 @@ public struct ViewToImage: ViewToImageProtocol {
     ///   - size: The output size of the image.
     ///   - scale: A scale factor to apply to the image. Defaults to 1.0.
     /// - Returns: A PNG image data if successful, or nil if the conversion fails.
-    public static func png<T: View>(_ view: T, size: CGSize, scale: CGFloat = 1.0) -> Data? {
-        createBitmapRep(view, size: size, scale: scale)?
+    public static func png<T: View>(from view: T, size: CGSize, scale: CGFloat = 1.0) -> Data? {
+        createBitmapRep(from: view, size: size, scale: scale)?
             .representation(using: .png, properties: [:])
     }
 }
 
 private extension ViewToImage {
-    static func createBitmapRep<T: View>(_ view: T, size: CGSize, scale: CGFloat) -> NSBitmapImageRep? {
+    static func createBitmapRep<T: View>(from view: T, size: CGSize, scale: CGFloat) -> NSBitmapImageRep? {
         let outputScale = max(scale, 0.1) * screenScaleFactor
         let pixelWidth = Int(size.width * outputScale)
         let pixelHeight = Int(size.height * outputScale)
