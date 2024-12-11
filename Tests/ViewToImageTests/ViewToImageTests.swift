@@ -23,7 +23,7 @@ struct TestView: View {
 struct UIKitTests {
     @Test func heicConversion() async throws {
         let size = CGSize(width: 300, height: 100)
-        let data = ViewToImage.heic(TestView(), size: size)
+        let data = ViewToImage.heic(from: TestView(), size: size)
         
         #expect(data != nil)
         #expect(NSImage(data: data!) != nil)
@@ -31,7 +31,7 @@ struct UIKitTests {
     
     @Test func jpegConversion() async throws {
         let size = CGSize(width: 300, height: 100)
-        let jpegData = ViewToImage.jpeg(TestView(), size: size)
+        let jpegData = ViewToImage.jpeg(from: TestView(), size: size)
         
         #expect(jpegData != nil)
         #expect(NSImage(data: jpegData!) != nil)
@@ -39,7 +39,7 @@ struct UIKitTests {
     
     @Test func pngConversion() async throws {
         let size = CGSize(width: 300, height: 100)
-        let data = ViewToImage.png(TestView(), size: size)
+        let data = ViewToImage.png(from: TestView(), size: size)
         
         #expect(data != nil)
         #expect(NSImage(data: data!) != nil)
@@ -53,7 +53,7 @@ struct UIKitTests {
 struct UIKitTests {
     @Test func heicConversion() async throws {
         let size = CGSize(width: 300, height: 100)
-        let data = ViewToImage.heic(TestView(), size: size)
+        let data = ViewToImage.heic(from: TestView(), size: size)
         
         #expect(data != nil)
         #expect(UIImage(data: data!) != nil)
@@ -61,7 +61,7 @@ struct UIKitTests {
     
     @Test func jpegConversion() async throws {
         let size = CGSize(width: 300, height: 100)
-        let jpegData = ViewToImage.jpeg(TestView(), size: size)
+        let jpegData = ViewToImage.jpeg(from: TestView(), size: size)
         
         #expect(jpegData != nil)
         #expect(UIImage(data: jpegData!) != nil)
@@ -69,7 +69,7 @@ struct UIKitTests {
     
     @Test func pngConversion() async throws {
         let size = CGSize(width: 300, height: 100)
-        let data = ViewToImage.png(TestView(), size: size)
+        let data = ViewToImage.png(from: TestView(), size: size)
         
         #expect(data != nil)
         #expect(UIImage(data: data!) != nil)
