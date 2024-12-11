@@ -20,7 +20,7 @@ struct GreetingView: View {
     }
 }
 
-if let imageData = ViewToImage.png(GreetingView(), size: CGSize(width: 300, height: 100)) {
+if let imageData = ViewToImage.png(from: GreetingView(), size: CGSize(width: 300, height: 100)) {
     print("Image successfully created!")
 }
 ```

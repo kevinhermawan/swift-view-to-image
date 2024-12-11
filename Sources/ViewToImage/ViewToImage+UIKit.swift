@@ -18,8 +18,8 @@ public struct ViewToImage: ViewToImageProtocol {
     ///   - size: The output size of the image.
     ///   - scale: A scale factor to apply to the image. Defaults to 1.0.
     /// - Returns: A HEIC image data if successful, or nil if the conversion fails.
-    public static func heic<T: View>(_ view: T, size: CGSize, scale: CGFloat = 1.0) -> Data? {
-        createImage(view, size: size, scale: scale)?
+    public static func heic<T: View>(from view: T, size: CGSize, scale: CGFloat = 1.0) -> Data? {
+        createImage(from: view, size: size, scale: scale)?
             .heicData()
     }
     
@@ -29,8 +29,8 @@ public struct ViewToImage: ViewToImageProtocol {
     ///   - size: The output size of the image.
     ///   - scale: A scale factor to apply to the image. Defaults to 1.0.
     /// - Returns: A JPEG image data if successful, or nil if the conversion fails.
-    public static func jpeg<T: View>(_ view: T, size: CGSize, scale: CGFloat = 1.0) -> Data? {
-        createImage(view, size: size, scale: scale)?
+    public static func jpeg<T: View>(from view: T, size: CGSize, scale: CGFloat = 1.0) -> Data? {
+        createImage(from: view, size: size, scale: scale)?
             .jpegData(compressionQuality: 1.0)
     }
     
@@ -41,14 +41,14 @@ public struct ViewToImage: ViewToImageProtocol {
     ///   - size: The output size of the image.
     ///   - scale: A scale factor to apply to the image. Defaults to 1.0.
     /// - Returns: A PNG image data if successful, or nil if the conversion fails.
-    public static func png<T: View>(_ view: T, size: CGSize, scale: CGFloat = 1.0) -> Data? {
-        createImage(view, size: size, scale: scale)?
+    public static func png<T: View>(from view: T, size: CGSize, scale: CGFloat = 1.0) -> Data? {
+        createImage(from: view, size: size, scale: scale)?
             .pngData()
     }
 }
 
 private extension ViewToImage {
-    static func createImage<T: View>(_ view: T, size: CGSize, scale: CGFloat) -> UIImage? {
+    static func createImage<T: View>(from view: T, size: CGSize, scale: CGFloat) -> UIImage? {
         let outputScale = max(scale, 0.1) * screenScaleFactor
         let pixelWidth = Int(size.width * outputScale)
         let pixelHeight = Int(size.height * outputScale)
